@@ -1,0 +1,24 @@
+{
+    "MemoryOptimization":  {
+                               "NodeMemoryLimit":  2048,
+                               "PythonMemoryOptimization":  true,
+                               "BackendWorkers":  1
+                           },
+    "FrontendConfig":  {
+                           "AnalyticsId":  "",
+                           "SocketUrl":  "http://localhost:8000",
+                           "ApiUrl":  "http://localhost:8000"
+                       },
+    "BackendConfig":  {
+                          "DatabaseUrl":  "sqlite:///./app.db",
+                          "SupabaseUrl":  "",
+                          "OpenRouterBaseUrl":  "https://openrouter.ai/api/v1",
+                          "AccessTokenExpireMinutes":  30,
+                          "UploadDir":  "./uploads",
+                          "SecretKey":  "9e077153-10ca-4f8d-b720-23f6762827de",
+                          "Algorithm":  "HS256",
+                          "SupabaseKey":  "",
+                          "OpenRouterApiKey":  ""
+                      },
+    "InstallPath":  "C:\\Users\\USER01\\Desktop\\xxx\\video2tool\\video2tool"
+}

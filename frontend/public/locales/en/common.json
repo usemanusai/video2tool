@@ -1,0 +1,112 @@
+{
+  "app": {
+    "name": "Video2Tool",
+    "tagline": "Transform videos into software development specifications and tasks"
+  },
+  "navigation": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "projects": "Projects",
+    "upload": "Upload Video",
+    "specifications": "Specifications",
+    "tasks": "Tasks",
+    "integrations": "Integrations",
+    "profile": "Profile",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "actions": {
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "upload": "Upload",
+    "download": "Download",
+    "export": "Export",
+    "import": "Import",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "view": "View",
+    "add": "Add",
+    "remove": "Remove"
+  },
+  "status": {
+    "loading": "Loading...",
+    "processing": "Processing...",
+    "completed": "Completed",
+    "failed": "Failed",
+    "pending": "Pending",
+    "success": "Success",
+    "error": "Error"
+  },
+  "errors": {
+    "general": "An error occurred",
+    "notFound": "Not found",
+    "unauthorized": "Unauthorized",
+    "forbidden": "Forbidden",
+    "serverError": "Server error",
+    "networkError": "Network error",
+    "timeout": "Request timed out",
+    "validation": "Validation error",
+    "required": "This field is required",
+    "invalidEmail": "Invalid email address",
+    "invalidPassword": "Invalid password",
+    "passwordMismatch": "Passwords do not match",
+    "emailInUse": "Email already in use",
+    "invalidCredentials": "Invalid credentials",
+    "sessionExpired": "Session expired"
+  },
+  "language": {
+    "select": "Select language",
+    "en": "English",
+    "es": "Spanish",
+    "fr": "French",
+    "de": "German",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "theme": {
+    "light": "Light Mode",
+    "dark": "Dark Mode",
+    "toggle": "Toggle theme"
+  },
+  "time": {
+    "now": "Just now",
+    "minutesAgo": "{{count}} minute ago",
+    "minutesAgo_plural": "{{count}} minutes ago",
+    "hoursAgo": "{{count}} hour ago",
+    "hoursAgo_plural": "{{count}} hours ago",
+    "daysAgo": "{{count}} day ago",
+    "daysAgo_plural": "{{count}} days ago",
+    "weeksAgo": "{{count}} week ago",
+    "weeksAgo_plural": "{{count}} weeks ago",
+    "monthsAgo": "{{count}} month ago",
+    "monthsAgo_plural": "{{count}} months ago",
+    "yearsAgo": "{{count}} year ago",
+    "yearsAgo_plural": "{{count}} years ago"
+  },
+  "notifications": {
+    "success": "Success",
+    "error": "Error",
+    "info": "Information",
+    "warning": "Warning"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {{page}} of {{total}}",
+    "rowsPerPage": "Rows per page:"
+  },
+  "confirmation": {
+    "title": "Are you sure?",
+    "message": "This action cannot be undone.",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  }
+}
