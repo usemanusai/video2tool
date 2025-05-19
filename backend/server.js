@@ -12,9 +12,11 @@ dotenv.config();
 
 // Import utilities
 const logger = require('./utils/logger');
+const socketService = require('./utils/socket');
 const { errorHandler } = require('./middleware/errorHandler');
 
 // Import routes
+const rootRoutes = require('./routes/rootRoutes');
 const authRoutes = require('./routes/authRoutes');
 const videoRoutes = require('./routes/videoRoutes');
 const specRoutes = require('./routes/specRoutes');
@@ -33,6 +35,10 @@ app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 app.use(compression()); // Compress responses
 app.use(morgan('combined', { stream: { write: message => logger.info(message.trim()) } })); // HTTP request logging
 
+// Set up multer for handling multipart/form-data
+const upload = multer();
+app.use('/api/auth/token', upload.none()); // Handle form data for auth token endpoint
+
 // Create upload directories if they don't exist
 const uploadDir = process.env.UPLOAD_DIR || './uploads';
 const tempDir = process.env.TEMP_DIR || './temp';
@@ -49,6 +55,7 @@ const outputDir = process.env.OUTPUT_DIR || './output';
 app.use('/uploads', express.static(path.join(__dirname, uploadDir)));
 
 // Set up API routes
+app.use('/', rootRoutes); // Root route handler
 app.use('/api/auth', authRoutes);
 app.use('/api/videos', videoRoutes);
 app.use('/api/specifications', specRoutes);
@@ -66,9 +73,13 @@ app.use(errorHandler);
 
 // Start the server
 const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   logger.info(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
 });
+
+// Initialize Socket.IO
+socketService.init(server);
+logger.info('Socket.IO initialized');
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err) => {
