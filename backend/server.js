@@ -6,6 +6,7 @@ const compression = require('compression');
 const path = require('path');
 const fs = require('fs');
 const dotenv = require('dotenv');
+const multer = require('multer');
 
 // Load environment variables
 dotenv.config();
