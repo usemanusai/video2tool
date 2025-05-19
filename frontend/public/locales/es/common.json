@@ -1,0 +1,112 @@
+{
+  "app": {
+    "name": "Video2Tool",
+    "tagline": "Transforma videos en especificaciones y tareas de desarrollo de software"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "dashboard": "Panel",
+    "projects": "Proyectos",
+    "upload": "Subir Video",
+    "specifications": "Especificaciones",
+    "tasks": "Tareas",
+    "integrations": "Integraciones",
+    "profile": "Perfil",
+    "login": "Iniciar Sesión",
+    "logout": "Cerrar Sesión"
+  },
+  "actions": {
+    "create": "Crear",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "submit": "Enviar",
+    "upload": "Subir",
+    "download": "Descargar",
+    "export": "Exportar",
+    "import": "Importar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "view": "Ver",
+    "add": "Añadir",
+    "remove": "Eliminar"
+  },
+  "status": {
+    "loading": "Cargando...",
+    "processing": "Procesando...",
+    "completed": "Completado",
+    "failed": "Fallido",
+    "pending": "Pendiente",
+    "success": "Éxito",
+    "error": "Error"
+  },
+  "errors": {
+    "general": "Ha ocurrido un error",
+    "notFound": "No encontrado",
+    "unauthorized": "No autorizado",
+    "forbidden": "Prohibido",
+    "serverError": "Error del servidor",
+    "networkError": "Error de red",
+    "timeout": "Tiempo de espera agotado",
+    "validation": "Error de validación",
+    "required": "Este campo es obligatorio",
+    "invalidEmail": "Dirección de correo electrónico inválida",
+    "invalidPassword": "Contraseña inválida",
+    "passwordMismatch": "Las contraseñas no coinciden",
+    "emailInUse": "El correo electrónico ya está en uso",
+    "invalidCredentials": "Credenciales inválidas",
+    "sessionExpired": "Sesión expirada"
+  },
+  "language": {
+    "select": "Seleccionar idioma",
+    "en": "Inglés",
+    "es": "Español",
+    "fr": "Francés",
+    "de": "Alemán",
+    "ja": "Japonés",
+    "zh": "Chino"
+  },
+  "theme": {
+    "light": "Modo Claro",
+    "dark": "Modo Oscuro",
+    "toggle": "Cambiar tema"
+  },
+  "time": {
+    "now": "Ahora mismo",
+    "minutesAgo": "Hace {{count}} minuto",
+    "minutesAgo_plural": "Hace {{count}} minutos",
+    "hoursAgo": "Hace {{count}} hora",
+    "hoursAgo_plural": "Hace {{count}} horas",
+    "daysAgo": "Hace {{count}} día",
+    "daysAgo_plural": "Hace {{count}} días",
+    "weeksAgo": "Hace {{count}} semana",
+    "weeksAgo_plural": "Hace {{count}} semanas",
+    "monthsAgo": "Hace {{count}} mes",
+    "monthsAgo_plural": "Hace {{count}} meses",
+    "yearsAgo": "Hace {{count}} año",
+    "yearsAgo_plural": "Hace {{count}} años"
+  },
+  "notifications": {
+    "success": "Éxito",
+    "error": "Error",
+    "info": "Información",
+    "warning": "Advertencia"
+  },
+  "pagination": {
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "page": "Página {{page}} de {{total}}",
+    "rowsPerPage": "Filas por página:"
+  },
+  "confirmation": {
+    "title": "¿Estás seguro?",
+    "message": "Esta acción no se puede deshacer.",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar"
+  }
+}

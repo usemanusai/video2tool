@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video2Tool - AI-powered Video Analysis for Software Development</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-video"></i> Video2Tool</h1>
+            <p>Transform video content into development specifications</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="upload-section" class="card">
+            <h2>Upload Video</h2>
+            <p>Upload a video showing software functionality you want to replicate.</p>
+            
+            <div class="upload-container">
+                <form id="upload-form">
+                    <div class="file-drop-area" id="drop-area">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag and drop your video here, or click to browse</p>
+                        <input type="file" id="file-input" accept="video/mp4,video/avi,video/mov,video/quicktime" hidden>
+                    </div>
+                    <div class="file-info" id="file-info" style="display: none;">
+                        <p><span id="file-name"></span> (<span id="file-size"></span>)</p>
+                        <button type="button" id="remove-file" class="btn-text"><i class="fas fa-times"></i> Remove</button>
+                    </div>
+                    <button type="submit" id="upload-button" class="btn btn-primary" disabled>
+                        <i class="fas fa-upload"></i> Upload and Process
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <section id="processing-section" class="card" style="display: none;">
+            <h2>Processing Video</h2>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progress-bar"></div>
+                </div>
+                <p id="status-message">Uploading video...</p>
+            </div>
+        </section>
+
+        <section id="workflow-section" class="card">
+            <h2>How It Works</h2>
+            <div class="workflow">
+                <div class="workflow-step">
+                    <div class="step-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>1. Video Analysis</h3>
+                    <p>Upload a video showing the software you want to replicate. Our AI analyzes the video content, transcribes spoken instructions, and identifies UI elements.</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>2. Specification Generation</h3>
+                    <p>The AI generates a comprehensive software specification document based on the video analysis, including requirements, user stories, and technical details.</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>3. Task Creation</h3>
+                    <p>The specification is converted into actionable development tasks with priorities, dependencies, and time estimates to guide your implementation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="results-section" class="card" style="display: none;">
+            <h2>Results</h2>
+            <div class="tabs">
+                <button class="tab-button active" data-tab="summary-tab">Summary</button>
+                <button class="tab-button" data-tab="specification-tab">Specification</button>
+                <button class="tab-button" data-tab="tasks-tab">Tasks</button>
+            </div>
+            
+            <div class="tab-content">
+                <div id="summary-tab" class="tab-pane active">
+                    <h3>Video Analysis Summary</h3>
+                    <div id="summary-content"></div>
+                </div>
+                
+                <div id="specification-tab" class="tab-pane">
+                    <h3>Software Specification</h3>
+                    <div id="specification-content"></div>
+                </div>
+                
+                <div id="tasks-tab" class="tab-pane">
+                    <h3>Development Tasks</h3>
+                    <div id="tasks-content"></div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="download-pdf" class="btn"><i class="fas fa-file-pdf"></i> Download PDF</button>
+                <button id="download-json" class="btn"><i class="fas fa-file-code"></i> Download JSON</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Video2Tool. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

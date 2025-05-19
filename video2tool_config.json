@@ -1,0 +1,30 @@
+{
+    "MemoryOptimization":  {
+                               "NodeMemoryLimit":  2048,
+                               "PythonMemoryOptimization":  true,
+                               "BackendWorkers":  1,
+                               "QueueConcurrency":  1
+                           },
+    "FrontendConfig":  {
+                           "AnalyticsId":  "",
+                           "SocketUrl":  "http://localhost:8000",
+                           "ApiUrl":  "http://localhost:8000"
+                       },
+    "BackendConfig":  {
+                          "SupabaseKey":  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6cHZwY3VqemtuZm95dWxwYXZpIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NzUxMTk1OSwiZXhwIjoyMDYzMDg3OTU5fQ.CK7lpDstXntKJkjIQedSotzpBr4vVUtsyee07akPfYs",
+                          "UploadDir":  "./uploads",
+                          "AccessTokenExpireMinutes":  30,
+                          "SupabaseUrl":  "https://uzpvpcujzknfoyulpavi.supabase.co",
+                          "SupabaseJwtSecret":  "e5dhM7QFakjyge8WJLtmpQeRxpB0p+6CoHdyT3JtF4gmPuoFZhRxnz4WKHxRcZItnX9X+6OchjMdCiqbfzCRpA==",
+                          "DatabaseUrl":  "sqlite:///./app.db",
+                          "SecretKey":  "b044cee3-0db2-4ab2-bd6a-4abdf09257b1",
+                          "OpenRouterBaseUrl":  "https://openrouter.ai/api/v1",
+                          "Port":  8123,
+                          "OpenRouterApiKey":  "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",
+                          "Algorithm":  "HS256",
+                          "BackendType":  "nodejs",
+                          "TempDir":  "./temp",
+                          "OutputDir":  "./output"
+                      },
+    "InstallPath":  "C:\\Users\\USER01\\Desktop\\xxx\\video2tool\\video2tool"
+}
