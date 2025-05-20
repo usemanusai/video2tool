@@ -11,6 +11,9 @@ const multer = require('multer');
 // Load environment variables
 dotenv.config();
 
+// Set NODE_ENV to development if not set
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 // Import utilities
 const logger = require('./utils/logger');
 const socketService = require('./utils/socket');

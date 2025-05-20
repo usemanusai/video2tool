@@ -17,9 +17,9 @@ import { useAuth } from '@/hooks/useAuth';
 import LoadingScreen from '@/components/common/LoadingScreen';
 
 const RegisterPage: React.FC = () => {
-  const { register, isLoading } = useAuth();
+  const { register, isLoading, checkAuthState } = useAuth();
   const navigate = useNavigate();
-  
+
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -29,11 +29,11 @@ const RegisterPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    
+
     // Clear validation error when field is edited
     if (validationErrors[name]) {
       setValidationErrors((prev) => {
@@ -46,23 +46,23 @@ const RegisterPage: React.FC = () => {
 
   const validateForm = () => {
     const errors: Record<string, string> = {};
-    
+
     if (!formData.email) {
       errors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       errors.email = 'Email is invalid';
     }
-    
+
     if (!formData.password) {
       errors.password = 'Password is required';
     } else if (formData.password.length < 8) {
       errors.password = 'Password must be at least 8 characters';
     }
-    
+
     if (formData.password !== formData.confirmPassword) {
       errors.confirmPassword = 'Passwords do not match';
     }
-    
+
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -70,19 +70,40 @@ const RegisterPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    
+
     if (!validateForm()) {
       return;
     }
-    
+
     try {
-      await register({
+      console.log('RegisterPage: Attempting registration with:', formData.email);
+
+      // Register the user
+      const user = await register({
         email: formData.email,
         password: formData.password,
         full_name: formData.fullName || undefined,
       });
-      navigate('/dashboard', { replace: true });
+
+      console.log('RegisterPage: Registration successful, user:', user);
+
+      // Check if we're authenticated after registration
+      const { isAuthenticated } = checkAuthState();
+
+      if (isAuthenticated) {
+        console.log('RegisterPage: User is authenticated, navigating to dashboard');
+        navigate('/dashboard', { replace: true });
+      } else {
+        console.log('RegisterPage: User is not authenticated, navigating to login');
+        navigate('/login', {
+          replace: true,
+          state: {
+            message: 'Registration successful! Please log in with your new account.'
+          }
+        });
+      }
     } catch (err: any) {
+      console.error('RegisterPage: Registration error:', err);
       setError(err.message || 'Registration failed. Please try again.');
     }
   };
@@ -116,13 +137,13 @@ const RegisterPage: React.FC = () => {
         <Typography variant="body1" align="center" color="text.secondary" sx={{ mb: 3 }}>
           Sign up to start using Video2Tool
         </Typography>
-        
+
         {error && (
           <Alert severity="error" sx={{ mb: 3 }}>
             {error}
           </Alert>
         )}
-        
+
         <Box component="form" onSubmit={handleSubmit} noValidate>
           <TextField
             margin="normal"

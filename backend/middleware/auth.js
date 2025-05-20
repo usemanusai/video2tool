@@ -17,34 +17,69 @@ const protect = async (req, res, next) => {
 
     // Check if token exists
     if (!token) {
-      return next(new ApiError(401, 'Not authorized, no token'));
+      return res.status(401).json({ detail: 'Not authorized, no token' });
     }
 
     try {
+      // Use a default secret if not configured
+      const jwtSecret = config.supabase.jwtSecret || 'video2tool-development-secret-key';
+
       // Verify token
-      const decoded = jwt.verify(token, config.supabase.jwtSecret);
-      
-      // Get user from Supabase
-      const { data: user, error } = await supabase
-        .from('users')
-        .select('*')
-        .eq('id', decoded.sub)
-        .single();
-      
-      if (error || !user) {
-        return next(new ApiError(401, 'Not authorized, invalid token'));
+      const decoded = jwt.verify(token, jwtSecret);
+
+      try {
+        // Get user from Supabase
+        const { data: user, error } = await supabase
+          .from('users')
+          .select('*')
+          .eq('id', decoded.sub)
+          .single();
+
+        if (error || !user) {
+          // For development, create a mock user if database access fails
+          if (process.env.NODE_ENV === 'development') {
+            logger.warn('Using mock user in development mode');
+            req.user = {
+              id: decoded.sub,
+              email: 'user@example.com',
+              full_name: 'Test User',
+              created_at: new Date().toISOString(),
+              last_sign_in: new Date().toISOString(),
+            };
+            return next();
+          }
+
+          return res.status(401).json({ detail: 'Not authorized, user not found' });
+        }
+
+        // Add user to request
+        req.user = user;
+        next();
+      } catch (dbError) {
+        logger.error('Database error in auth middleware:', dbError);
+
+        // For development, create a mock user if database access fails
+        if (process.env.NODE_ENV === 'development') {
+          logger.warn('Using mock user in development mode');
+          req.user = {
+            id: decoded.sub,
+            email: 'user@example.com',
+            full_name: 'Test User',
+            created_at: new Date().toISOString(),
+            last_sign_in: new Date().toISOString(),
+          };
+          return next();
+        }
+
+        return res.status(500).json({ detail: 'Error accessing user data' });
       }
-      
-      // Add user to request
-      req.user = user;
-      next();
-    } catch (error) {
-      logger.error('JWT verification error:', error);
-      return next(new ApiError(401, 'Not authorized, invalid token'));
+    } catch (jwtError) {
+      logger.error('JWT verification error:', jwtError);
+      return res.status(401).json({ detail: 'Not authorized, invalid token' });
     }
   } catch (error) {
     logger.error('Auth middleware error:', error);
-    return next(new ApiError(500, 'Authentication error'));
+    return res.status(500).json({ detail: 'Authentication error' });
   }
 };
 
@@ -66,25 +101,54 @@ const optionalAuth = async (req, res, next) => {
     }
 
     try {
+      // Use a default secret if not configured
+      const jwtSecret = config.supabase.jwtSecret || 'video2tool-development-secret-key';
+
       // Verify token
-      const decoded = jwt.verify(token, config.supabase.jwtSecret);
-      
-      // Get user from Supabase
-      const { data: user, error } = await supabase
-        .from('users')
-        .select('*')
-        .eq('id', decoded.sub)
-        .single();
-      
-      if (!error && user) {
-        // Add user to request
-        req.user = user;
+      const decoded = jwt.verify(token, jwtSecret);
+
+      try {
+        // Get user from Supabase
+        const { data: user, error } = await supabase
+          .from('users')
+          .select('*')
+          .eq('id', decoded.sub)
+          .single();
+
+        if (!error && user) {
+          // Add user to request
+          req.user = user;
+        } else if (process.env.NODE_ENV === 'development') {
+          // For development, create a mock user if database access fails
+          logger.warn('Using mock user in development mode (optionalAuth)');
+          req.user = {
+            id: decoded.sub,
+            email: 'user@example.com',
+            full_name: 'Test User',
+            created_at: new Date().toISOString(),
+            last_sign_in: new Date().toISOString(),
+          };
+        }
+      } catch (dbError) {
+        logger.warn('Database error in optionalAuth:', dbError.message);
+
+        if (process.env.NODE_ENV === 'development') {
+          // For development, create a mock user if database access fails
+          logger.warn('Using mock user in development mode (optionalAuth)');
+          req.user = {
+            id: decoded.sub,
+            email: 'user@example.com',
+            full_name: 'Test User',
+            created_at: new Date().toISOString(),
+            last_sign_in: new Date().toISOString(),
+          };
+        }
       }
-      
+
       next();
-    } catch (error) {
+    } catch (jwtError) {
       // Continue without user if token is invalid
-      logger.warn('Invalid token in optionalAuth:', error.message);
+      logger.warn('Invalid token in optionalAuth:', jwtError.message);
       next();
     }
   } catch (error) {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Button,
@@ -19,23 +19,45 @@ const LoginPage: React.FC = () => {
   const { login, isLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
   // Get the redirect path from location state or default to dashboard
   const from = (location.state as any)?.from?.pathname || '/dashboard';
+
+  // Check for success message from registration
+  useEffect(() => {
+    if (location.state && (location.state as any).message) {
+      setSuccessMessage((location.state as any).message);
+      // Clear the message from location state
+      navigate(location.pathname, { replace: true });
+    }
+  }, [location, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    
+    setSuccessMessage(null);
+
     try {
-      await login({ email, password });
-      navigate(from, { replace: true });
+      console.log('LoginPage: Attempting login with:', email);
+
+      // Call login function from AuthContext
+      const user = await login({ email, password });
+
+      console.log('LoginPage: Login successful, user:', user);
+      console.log('LoginPage: Navigating to:', from);
+
+      // Add a small delay to ensure state is updated
+      setTimeout(() => {
+        navigate(from, { replace: true });
+      }, 100);
     } catch (err: any) {
+      console.error('LoginPage: Login error:', err);
       setError(err.message || 'Login failed. Please check your credentials.');
     }
   };
@@ -69,13 +91,19 @@ const LoginPage: React.FC = () => {
         <Typography variant="body1" align="center" color="text.secondary" sx={{ mb: 3 }}>
           Enter your credentials to access your account
         </Typography>
-        
+
         {error && (
           <Alert severity="error" sx={{ mb: 3 }}>
             {error}
           </Alert>
         )}
-        
+
+        {successMessage && (
+          <Alert severity="success" sx={{ mb: 3 }}>
+            {successMessage}
+          </Alert>
+        )}
+
         <Box component="form" onSubmit={handleSubmit} noValidate>
           <TextField
             margin="normal"
