@@ -29,12 +29,17 @@ build
 *.sln
 *.sw?
 
-# Environment variables
+# Environment variables and configuration files with secrets
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+backend/.env
+frontend/.env
+video2tool_config.json
+temp_config.json
+**/config.json
 
 # Testing
 coverage

@@ -18,7 +18,7 @@
         "UploadDir": "./uploads",
         "TempDir": "./temp",
         "OutputDir": "./output",
-        "SecretKey": "9e077153-10ca-4f8d-b720-23f6762827de",
+        "SecretKey": "your_secret_key",
         "Algorithm": "HS256",
         "SupabaseKey": "",
         "SupabaseJwtSecret": "",

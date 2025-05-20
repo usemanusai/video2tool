@@ -1,0 +1,30 @@
+{
+    "MemoryOptimization": {
+        "NodeMemoryLimit": 2048,
+        "PythonMemoryOptimization": true,
+        "BackendWorkers": 1,
+        "QueueConcurrency": 1
+    },
+    "FrontendConfig": {
+        "AnalyticsId": "",
+        "SocketUrl": "http://localhost:8000",
+        "ApiUrl": "http://localhost:8000"
+    },
+    "BackendConfig": {
+        "SupabaseKey": "your_supabase_key",
+        "UploadDir": "./uploads",
+        "AccessTokenExpireMinutes": 30,
+        "SupabaseUrl": "your_supabase_url",
+        "SupabaseJwtSecret": "your_supabase_jwt_secret",
+        "DatabaseUrl": "sqlite:///./app.db",
+        "SecretKey": "your_secret_key",
+        "OpenRouterBaseUrl": "https://openrouter.ai/api/v1",
+        "Port": 8000,
+        "OpenRouterApiKey": "your_openrouter_api_key",
+        "Algorithm": "HS256",
+        "BackendType": "nodejs",
+        "TempDir": "./temp",
+        "OutputDir": "./output"
+    },
+    "InstallPath": "C:\\path\\to\\video2tool"
+}
