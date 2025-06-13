@@ -302,4 +302,3 @@ class ExportManager:
             return "\n".join([f"- {item}" for item in value])
         else:
             return str(value)
-"""

@@ -258,4 +258,3 @@ class PDFGenerator:
         except Exception as e:
             logger.error(f"Error generating PDF from HTML: {e}")
             raise ValueError(f"Failed to generate PDF from HTML: {str(e)}")
-"""

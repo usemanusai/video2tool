@@ -665,4 +665,3 @@ class SupabaseClient:
         except Exception as e:
             logger.error(f"Error fetching tasks: {e}")
             raise HTTPException(status_code=400, detail=f"Failed to fetch tasks: {str(e)}")
-"""

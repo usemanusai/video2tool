@@ -36,7 +36,7 @@ timeout /t 5 > nul
 
 REM Start the frontend server in a new window
 echo Starting frontend server...
-start "Video2Tool Frontend" cmd /c "cd frontend && npm run dev:original -- --host 0.0.0.0 > ..\logs\frontend.log 2>&1"
+start "Video2Tool Frontend" cmd /c "cd frontend && npm run dev -- --host 0.0.0.0 > ..\logs\frontend.log 2>&1"
 
 echo.
 echo Video2Tool servers are starting...

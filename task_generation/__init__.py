@@ -6,4 +6,3 @@ This package contains components for generating development tasks:
 - Analyzing task dependencies
 - Prioritizing tasks
 - Estimating task completion times
-"""

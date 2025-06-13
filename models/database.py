@@ -135,4 +135,3 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     """Model for token data."""
     user_id: Optional[str] = None
-"""
