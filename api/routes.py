@@ -24,7 +24,7 @@ from utils.supabase_client import SupabaseClient
 from utils.export_manager import ExportManager, ExportFormat
 from integrations.integration_manager import IntegrationManager, IntegrationType
 from api.auth import get_current_user, get_optional_user, register_user, login_user
-from models.database import User, UserCreate, Project, ProjectCreate, VideoAnalysis, VideoAnalysisCreate, Token
+from models.database import User, UserCreate, Project, ProjectCreate, VideoAnalysis, VideoAnalysisCreate, Token, Specification, Task
 
 logger = logging.getLogger(__name__)
 

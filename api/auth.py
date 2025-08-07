@@ -109,4 +109,3 @@ async def login_user(form_data: OAuth2PasswordRequestForm) -> dict:
         Dict containing user data and access token
     """
     return await supabase_client.login_user(form_data.username, form_data.password)
-"""

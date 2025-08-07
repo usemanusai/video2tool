@@ -4,6 +4,7 @@ Main entry point for the Video2Tool application.
 
 import logging
 import os
+from datetime import datetime
 from pathlib import Path
 
 import uvicorn
@@ -73,11 +74,17 @@ async def root(request: Request):
     """Render the home page."""
     return templates.TemplateResponse("index.html", {"request": request})
 
-# Health check
+# Health check endpoints
 @app.get("/health")
 async def health():
-    """Health check endpoint."""
-    return {"status": "ok"}
+    """Simple health check endpoint."""
+    return {"status": "ok", "timestamp": datetime.now().isoformat()}
+
+@app.get("/health/detailed")
+async def detailed_health():
+    """Detailed health check endpoint."""
+    from utils.health_check import health_checker
+    return await health_checker.run_comprehensive_health_check()
 
 # Error handlers
 @app.exception_handler(404)

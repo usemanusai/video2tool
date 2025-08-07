@@ -254,4 +254,3 @@ class VideoDownloader:
         except Exception as e:
             logger.error(f"Error downloading with yt-dlp: {e}")
             raise ValueError(f"Failed to download video from URL: {url}")
-"""
